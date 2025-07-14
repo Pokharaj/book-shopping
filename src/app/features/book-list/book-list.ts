@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -9,7 +10,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 @Component({
   selector: 'app-book-list',
   standalone: true,
-  imports: [MatListModule, MatCardModule, MatButtonModule, RouterModule, CommonModule, HttpClientModule],
+  imports: [MatListModule, MatCardModule, MatButtonModule, MatIconModule, RouterModule, CommonModule, HttpClientModule],
   templateUrl: './book-list.html',
   styleUrl: './book-list.scss'
 })

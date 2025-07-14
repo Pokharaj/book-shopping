@@ -1,5 +1,5 @@
 {
-  "name": "book-shopping",
+  "name": "book-store",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:book-shopping": "node dist/book-shopping/server/server.mjs"
+    "serve:ssr:book-store": "node dist/book-store/server/server.mjs"
   },
   "prettier": {
     "overrides": [

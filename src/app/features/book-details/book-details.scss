@@ -1,18 +1,76 @@
 .book-details-container {
-    margin: 24px;
+  margin: 32px auto;
+  display: flex;
+  justify-content: center;
+}
+
+.book-details-card {
+  max-width: 540px;
+  width: 100%;
+  padding-bottom: 16px;
 }
 
 .book-details-card mat-card-title {
-    padding-top: 10px;
-    padding-left: 15px;
+  padding-top: 18px;
+  padding-left: 24px;
+  font-size: 1.5em;
+  font-weight: 700;
+  margin-bottom: 8px;
 }
 
-.book-details-card mat-card-subtitle {
-    padding-left: 15px;
+.book-details-card mat-card-content {
+  padding-left: 24px;
+  padding-right: 24px;
+  margin-bottom: 16px;
+}
+
+.book-details-card p {
+  margin: 10px 0 0 0;
+  font-size: 1.08em;
+  line-height: 1.6;
+}
+
+.book-details-card mat-expansion-panel {
+  margin-top: 18px;
+  background: #fafafa;
 }
 
 .book-details-card mat-card-actions {
-    display: flex;
-    gap: 10px;
+  display: flex;
+  gap: 16px;
+  padding-left: 24px;
+  padding-bottom: 16px;
+  margin-top: 16px;
+}
+
+.book-details-card img[mat-card-image] {
+  margin: 0 auto 18px auto;
+  max-height: 220px;
+  object-fit: cover;
+  border-radius: 6px;
+  display: block;
+}
+
+.rating-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin: 8px 0 16px 0;
+  font-size: 1.1em;
+}
+.rating-display mat-icon {
+  font-size: 1.3em;
+  vertical-align: middle;
+}
+.rating-number {
+  margin-left: 8px;
+  font-weight: 500;
+  color: #ff9800;
+}
+.review-count {
+  margin-left: 6px;
+  color: #888;
+  font-size: 0.98em;
 }
 

@@ -1,5 +1,15 @@
 <div class="book-details-container">
   <mat-card *ngIf="book" class="book-details-card">
+    <img mat-card-image src="/generic-book-cover.jpg" alt="Book Cover" />
+    <div class="rating-display">
+      <ng-container *ngFor="let star of [1,2,3,4,5]; let i = index">
+        <mat-icon color="warn">
+          {{ book.ratings.average_rating >= star ? 'star' : (book.ratings.average_rating >= star - 0.5 ? 'star_half' : 'star_border') }}
+        </mat-icon>
+      </ng-container>
+      <span class="rating-number">{{ book.ratings.average_rating }} / 5</span>
+      <span class="review-count">({{ book.ratings.review_count }} reviews)</span>
+    </div>
     <mat-card-title>{{ book.title }}</mat-card-title>
     <mat-card-content>
       <p><strong>Author:</strong> {{ book.author }}</p>
@@ -8,7 +18,6 @@
       <p><strong>Genre:</strong> {{ book.genre }}</p>
       <p><strong>Publisher:</strong> {{ book.publisher }}</p>
       <p><strong>Publication Date:</strong> {{ book.publication_date }}</p>
-      <p><strong>Ratings:</strong> {{ book.ratings.average_rating }} ({{ book.ratings.review_count }} reviews)</p>
       <p><strong>Pages:</strong> {{ book.pages }}</p>
       <p><strong>Language:</strong> {{ book.language }}</p>
       <mat-expansion-panel>

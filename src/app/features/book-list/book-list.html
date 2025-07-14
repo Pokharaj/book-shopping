@@ -3,6 +3,14 @@
     <mat-card-title>{{ book.title }}</mat-card-title>
     <mat-card-subtitle>Author: {{ book.author }}</mat-card-subtitle>
     <img mat-card-image src="generic-book-cover.jpg" alt="Book Cover">
+    <div class="rating-display">
+      <ng-container *ngFor="let star of [1,2,3,4,5]">
+        <mat-icon color="warn">
+          {{ book.ratings.average_rating >= star ? 'star' : (book.ratings.average_rating >= star - 0.5 ? 'star_half' : 'star_border') }}
+        </mat-icon>
+      </ng-container>
+      <span class="rating-number">({{ book.ratings.average_rating }}/5)</span>
+    </div>
     <mat-card-content>
       <div matLine>Price: <strong>${{ book.price.amount }}</strong></div>
       <div class="book-description">Description: {{ book.description.length > 100 ? (book.description | slice:0:100) + '...' : book.description }}</div>

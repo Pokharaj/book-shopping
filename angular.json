@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "book-shopping": {
+    "book-store": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -63,10 +63,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "book-shopping:build:production"
+              "buildTarget": "book-store:build:production"
             },
             "development": {
-              "buildTarget": "book-shopping:build:development"
+              "buildTarget": "book-store:build:development"
             }
           },
           "defaultConfiguration": "development"
