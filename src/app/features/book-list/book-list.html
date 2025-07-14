@@ -1,0 +1,13 @@
+<div class="book-list-container">
+  <mat-card *ngFor="let book of books" class="book-card">
+    <mat-card-title>{{ book.title }}</mat-card-title>
+    <mat-card-subtitle>Author: {{ book.author }}</mat-card-subtitle>
+    <mat-card-content>
+      <div class="book-description">Description: {{ book.description.length > 100 ? (book.description | slice:0:100) + '...' : book.description }}</div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" [routerLink]="['/book', book.ISBN]">Details</button>
+      <button mat-raised-button color="accent" (click)="addToCart(book)">Add to Cart</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

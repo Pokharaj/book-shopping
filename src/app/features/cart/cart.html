@@ -1,0 +1,11 @@
+<mat-card>
+  <mat-card-title>Shopping Cart</mat-card-title>
+  <mat-list>
+    <mat-list-item *ngFor="let item of cartItems">
+      <div matLine>{{ item.title }}</div>
+      <div matLine>Quantity: {{ item.quantity }}</div>
+      <button mat-button color="warn" (click)="removeFromCart(item)">Remove</button>
+    </mat-list-item>
+  </mat-list>
+  <button mat-raised-button color="primary" routerLink="/checkout">Proceed to Checkout</button>
+</mat-card>

@@ -1,0 +1,28 @@
+<div class="book-details-container">
+  <mat-card *ngIf="book" class="book-details-card">
+    <mat-card-title>{{ book.title }}</mat-card-title>
+    <mat-card-content>
+      <p><strong>Author:</strong> {{ book.author }}</p>
+      <p><strong>Description:</strong> {{ book.description }}</p>
+      <p><strong>Price:</strong> {{ book.price.amount }} {{ book.price.currency }}</p>
+      <p><strong>Genre:</strong> {{ book.genre }}</p>
+      <p><strong>Publisher:</strong> {{ book.publisher }}</p>
+      <p><strong>Publication Date:</strong> {{ book.publication_date }}</p>
+      <p><strong>Ratings:</strong> {{ book.ratings.average_rating }} ({{ book.ratings.review_count }} reviews)</p>
+      <p><strong>Pages:</strong> {{ book.pages }}</p>
+      <p><strong>Language:</strong> {{ book.language }}</p>
+      <p><strong>ISBN:</strong> {{ book.ISBN }}</p>
+      <p><strong>Format:</strong> {{ book.format }}</p>
+      <p><strong>Edition:</strong> {{ book.edition }}</p>
+      <p><strong>Dimensions:</strong> {{ book.dimensions.height }} x {{ book.dimensions.width }} x {{ book.dimensions.thickness }}</p>
+      <p><strong>Weight:</strong> {{ book.weight }}</p>
+      <p><strong>Availability:</strong> {{ book.availability }}</p>
+      <p><strong>Tags:</strong> {{ book.tags.join(', ') }}</p>
+      <p><strong>Bestseller:</strong> {{ book.bestseller ? 'Yes' : 'No' }}</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="addToCart(book)">Add to Cart</button>
+      <button mat-stroked-button color="accent" routerLink="/">Back to List</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
