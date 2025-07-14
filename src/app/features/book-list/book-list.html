@@ -2,7 +2,9 @@
   <mat-card *ngFor="let book of books" class="book-card">
     <mat-card-title>{{ book.title }}</mat-card-title>
     <mat-card-subtitle>Author: {{ book.author }}</mat-card-subtitle>
+    <img mat-card-image src="generic-book-cover.jpg" alt="Book Cover">
     <mat-card-content>
+      <div matLine>Price: <strong>${{ book.price.amount }}</strong></div>
       <div class="book-description">Description: {{ book.description.length > 100 ? (book.description | slice:0:100) + '...' : book.description }}</div>
     </mat-card-content>
     <mat-card-actions>

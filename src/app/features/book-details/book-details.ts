@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-book-details',
   standalone: true,
-  imports: [MatCardModule, MatButtonModule, RouterModule, CommonModule, HttpClientModule],
+  imports: [MatCardModule, MatButtonModule, RouterModule, CommonModule, HttpClientModule, MatExpansionModule],
   templateUrl: './book-details.html',
   styleUrl: './book-details.scss'
 })

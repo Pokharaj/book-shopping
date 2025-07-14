@@ -38,24 +38,60 @@
 
 .book-card {
   max-width: 320px;
-  min-height: 180px;
+  min-height: 250px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
 .book-card mat-card-title  {
-  padding-top: 10px;
+  padding-top: 18px;
   padding-left: 15px;
+  font-size: 1.25em;
+  font-weight: 700;
+  margin-bottom: 4px;
 }
 
 .book-card mat-card-subtitle {
   padding-left: 15px;
+  margin-bottom: 10px;
+  color: #666;
+  font-size: 1em;
+}
+
+.book-card mat-card-content {
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-bottom: 10px;
+}
+
+.book-card [mat-card-image] {
+  margin: 0 auto 10px auto;
+  max-height: 180px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.book-card .book-description {
+  color: #777;
+  font-size: 0.97em;
+  margin-top: 10px;
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+.book-card [matLine] {
+  margin-top: 6px;
+  margin-bottom: 2px;
+  font-size: 1.08em;
 }
 
 .book-card mat-card-actions {
   display: flex;
   gap: 10px;
+  padding-left: 15px;
+  padding-bottom: 12px;
+  margin-top: 8px;
 }
 
 mat-list-item {
