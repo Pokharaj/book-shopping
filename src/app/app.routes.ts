@@ -16,5 +16,9 @@ export const routes: Routes = [
   {
     path: 'checkout',
     loadChildren: () => import('./features/checkout/checkout-module').then(m => m.CheckoutModule)
+  },
+  {
+    path: 'order-success',
+    loadComponent: () => import('./features/checkout/order-success').then(m => m.OrderSuccess)
   }
 ];

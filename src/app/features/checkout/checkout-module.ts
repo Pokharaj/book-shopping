@@ -6,7 +6,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 
 const routes: Routes = [
-  { path: '', component: Checkout }
+  { path: '', component: Checkout },
+  { path: 'order-success', loadComponent: () => import('./order-success').then(m => m.OrderSuccess) }
 ];
 
 @NgModule({

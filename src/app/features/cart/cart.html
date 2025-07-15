@@ -1,5 +1,8 @@
 <mat-card class="cart-container">
-  <mat-card-title class="cart-title">Shopping Cart</mat-card-title>
+  <mat-card-title class="cart-title">
+    <mat-icon color="primary" style="vertical-align: middle; margin-right: 8px;">shopping_cart</mat-icon>
+    Shopping Cart
+  </mat-card-title>
   <mat-divider></mat-divider>
   <mat-list *ngIf="cartItems.length > 0; else emptyCart">
     <mat-list-item *ngFor="let item of cartItems; let last = last">
@@ -18,12 +21,16 @@
   </mat-list>
   <ng-template #emptyCart>
     <div class="empty-cart-msg">Your cart is empty.</div>
+    <div class="cart-empty-actions">
+      <button mat-stroked-button color="accent" routerLink="/">Home</button>
+    </div>
   </ng-template>
   <div class="cart-summary" *ngIf="cartItems.length > 0">
     <mat-icon color="accent">shopping_cart</mat-icon>
     <span>Total Items: <strong>{{ getTotalItems() }}</strong></span>
   </div>
   <div class="cart-actions" *ngIf="cartItems.length > 0">
+    <button mat-stroked-button color="accent" routerLink="/">Home</button>
     <button mat-raised-button color="primary" routerLink="/checkout">Proceed to Checkout</button>
   </div>
 </mat-card>

@@ -6,8 +6,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { DOCUMENT } from '@angular/common';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { CartService } from '../cart/cart.service';
 
 @Component({
   selector: 'app-book-details',
@@ -22,8 +22,8 @@ export class BookDetails implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private http: HttpClient,
-    @Inject(DOCUMENT) private document: Document,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private cartService: CartService
   ) {}
 
   ngOnInit() {
@@ -33,21 +33,12 @@ export class BookDetails implements OnInit {
     });
   }
 
-  private getCart(): any[] {
-    const match = this.document.cookie.match(new RegExp('(^| )cart=([^;]+)'));
-    if (match) {
-      try {
-        return JSON.parse(decodeURIComponent(match[2]));
-      } catch {
-        return [];
-      }
-    }
-    return [];
+  getCart() {
+    return this.cartService.getCart();
   }
 
-  private setCart(cart: any[]) {
-    const expires = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toUTCString();
-    this.document.cookie = `cart=${encodeURIComponent(JSON.stringify(cart))}; expires=${expires}; path=/`;
+  setCart(cart: any[]) {
+    this.cartService.setCart(cart);
   }
 
   getBookQuantity(): number {
@@ -63,7 +54,7 @@ export class BookDetails implements OnInit {
     if (idx > -1) {
       cart[idx].quantity += 1;
     } else {
-      cart.push({ ISBN: book.ISBN, title: book.title, quantity: 1 });
+      cart.push({ ISBN: book.ISBN, title: book.title, quantity: 1, price: book.price });
     }
     this.setCart(cart);
     this.snackBar.open(`${book.title} added to cart!`, 'Close', { duration: 2000 });

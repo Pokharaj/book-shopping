@@ -1,8 +1,38 @@
-<mat-card>
-  <mat-card-title>Checkout</mat-card-title>
+<mat-card class="checkout-container">
+  <mat-card-title class="checkout-title">
+    <mat-icon color="primary" style="vertical-align: middle; margin-right: 8px;">shopping_cart_checkout</mat-icon>
+    Checkout
+  </mat-card-title>
+  <mat-divider></mat-divider>
   <mat-card-content>
-    <p>Total Items: 3</p>
-    <p>Total Price: $90</p>
+    <div *ngIf="cartItems.length > 0; else emptyCart">
+      <mat-list>
+        <mat-list-item *ngFor="let item of cartItems">
+          <div class="checkout-item-row">
+            <div class="checkout-item-title">{{ item.title }}</div>
+            <div class="checkout-item-qty">x{{ item.quantity }}</div>
+            <div class="checkout-item-price">&#64; ${{ item.price?.amount || 0 | number:'1.2-2' }}</div>
+            <div class="checkout-item-total">= ${{ ((item.price?.amount || 0) * item.quantity) | number:'1.2-2' }}</div>
+          </div>
+        </mat-list-item>
+      </mat-list>
+      <div class="checkout-summary">
+        <div class="summary-row">
+          <span>Total Items:</span>
+          <span><strong>{{ getTotalItems() }}</strong></span>
+        </div>
+        <div class="summary-row">
+          <span>Total Price:</span>
+          <span class="summary-total-price"><strong>${{ getTotalPrice() | number:'1.2-2' }}</strong></span>
+        </div>
+      </div>
+      <div class="checkout-actions">
+        <button mat-stroked-button color="accent" routerLink="/cart">Back to Cart</button>
+        <button mat-raised-button color="primary" (click)="placeOrder()">Place Order</button>
+      </div>
+    </div>
+    <ng-template #emptyCart>
+      <div class="empty-cart-msg">Your cart is empty.</div>
+    </ng-template>
   </mat-card-content>
-  <button mat-raised-button color="primary" (click)="placeOrder()">Place Order</button>
 </mat-card>

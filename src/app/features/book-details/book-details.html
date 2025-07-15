@@ -16,23 +16,23 @@
       <p><strong>Description:</strong> {{ book.description }}</p>
       <p><strong>Price:</strong> {{ book.price.amount }} {{ book.price.currency }}</p>
       <p><strong>Genre:</strong> {{ book.genre }}</p>
-      <p><strong>Publisher:</strong> {{ book.publisher }}</p>
-      <p><strong>Publication Date:</strong> {{ book.publication_date }}</p>
-      <p><strong>Pages:</strong> {{ book.pages }}</p>
       <p><strong>Language:</strong> {{ book.language }}</p>
+      <p><strong>Format:</strong> {{ book.format }}</p>
+      <p><strong>Bestseller:</strong> {{ book.bestseller ? 'Yes' : 'No' }}</p>
+      <p><strong>Availability:</strong> {{ book.availability }}</p>
       <mat-expansion-panel>
         <mat-expansion-panel-header>
           <mat-panel-title>
             More Details
           </mat-panel-title>
         </mat-expansion-panel-header>
+        <p><strong>Publisher:</strong> {{ book.publisher }}</p>
+        <p><strong>Publication Date:</strong> {{ book.publication_date }}</p>
+        <p><strong>Pages:</strong> {{ book.pages }}</p>
         <p><strong>ISBN:</strong> {{ book.ISBN }}</p>
-        <p><strong>Format:</strong> {{ book.format }}</p>
-        <p><strong>Bestseller:</strong> {{ book.bestseller ? 'Yes' : 'No' }}</p>
         <p><strong>Edition:</strong> {{ book.edition }}</p>
         <p><strong>Dimensions:</strong> {{ book.dimensions.height }} x {{ book.dimensions.width }} x {{ book.dimensions.thickness }}</p>
         <p><strong>Weight:</strong> {{ book.weight }}</p>
-        <p><strong>Availability:</strong> {{ book.availability }}</p>
         <p><strong>Tags:</strong> {{ book.tags.join(', ') }}</p>
       </mat-expansion-panel>
     </mat-card-content>
