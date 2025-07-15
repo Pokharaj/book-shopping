@@ -16,8 +16,16 @@
       <div class="book-description">Description: {{ book.description.length > 100 ? (book.description | slice:0:100) + '...' : book.description }}</div>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button color="primary" [routerLink]="['/book', book.ISBN]">Details</button>
-      <button mat-raised-button color="accent" (click)="addToCart(book)">Add to Cart</button>
+      <button mat-raised-button color="accent" [routerLink]="['/book', book.ISBN]">Details</button>
+      <ng-container *ngIf="getBookQuantity(book) > 0; else addToCartBtn">
+        <button mat-mini-fab color="primary" (click)="decrementBook(book)" aria-label="Decrease quantity"><mat-icon>remove</mat-icon></button>
+        <span class="cart-qty-number">{{ getBookQuantity(book) }}</span>
+        <button mat-mini-fab color="primary" (click)="incrementBook(book)" aria-label="Increase quantity"><mat-icon>add</mat-icon></button>
+        <button *ngIf="getBookQuantity(book) > 0" mat-mini-fab color="warn" (click)="removeBook(book)" aria-label="Remove from cart"><mat-icon>delete</mat-icon></button>
+      </ng-container>
+      <ng-template #addToCartBtn>
+        <button mat-raised-button color="primary" (click)="addToCart(book)">Add to Cart</button>
+      </ng-template>
     </mat-card-actions>
   </mat-card>
 </div>

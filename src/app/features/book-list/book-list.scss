@@ -44,7 +44,7 @@
   justify-content: space-between;
 }
 
-.book-card mat-card-title  {
+.book-card mat-card-title {
   padding-top: 18px;
   padding-left: 15px;
   font-size: 1.25em;
@@ -101,11 +101,13 @@
   margin: 8px 0;
   gap: 6px;
 }
+
 .rating-display mat-icon {
   font-size: 22px;
   vertical-align: middle;
   line-height: 1;
 }
+
 .rating-number {
   font-size: 1.05em;
   margin-left: 8px;
@@ -114,9 +116,32 @@
   height: 22px;
 }
 
+.cart-qty-number {
+  min-width: 28px;
+  display: inline-block;
+  text-align: center;
+  font-size: 1.1em;
+  font-weight: 500;
+}
+
 mat-list-item {
   display: flex;
   align-items: center;
   min-height: 120px;
   padding: 12px 0;
+}
+
+.book-card .mat-mini-fab {
+  width: 30px;
+  height: 30px;
+  min-width: 30px;
+  min-height: 30px;
+  font-size: 1.1em;
+}
+
+.book-card .mat-mdc-mini-fab {
+  width: 30px;
+  height: 30px;
+  min-width: 30px;
+  min-height: 30px;
 }

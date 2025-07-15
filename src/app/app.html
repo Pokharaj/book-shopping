@@ -1,7 +1,10 @@
 <mat-toolbar color="primary">
-  <a routerLink="/" style="color: inherit; text-decoration: none; font-size: 1.25rem; font-weight: 500;">Book Store</a>
+  <a routerLink="/" class="brand-link">
+    <img src="book store icon.png" alt="Book Store Logo" class="brand-logo">
+    <span class="brand-text">Book Store</span>
+  </a>
   <span class="spacer"></span>
-  <button mat-icon-button routerLink="/cart" aria-label="Cart">
+  <button mat-icon-button routerLink="/cart" aria-label="Cart" [matBadge]="cartCount > 0 ? cartCount : null" matBadgeColor="accent" matBadgeOverlap="false">
     <mat-icon>shopping_cart</mat-icon>
   </button>
 </mat-toolbar>
@@ -10,5 +13,23 @@
 <style>
   .spacer {
     flex: 1 1 auto;
+  }
+  .brand-link {
+    display: flex;
+    align-items: center;
+    color: inherit;
+    text-decoration: none;
+    font-size: 1.25rem;
+    font-weight: 500;
+  }
+  .brand-logo {
+    height: 40px;
+    margin-right: 8px;
+    display: block;
+  }
+  .brand-text {
+    display: flex;
+    align-items: center;
+    height: 40px;
   }
 </style>

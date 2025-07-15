@@ -5,7 +5,7 @@
 }
 
 .book-details-card {
-  max-width: 540px;
+  max-width: 800px;
   width: 100%;
   padding-bottom: 16px;
 }
@@ -59,18 +59,47 @@
   margin: 8px 0 16px 0;
   font-size: 1.1em;
 }
+
 .rating-display mat-icon {
   font-size: 1.3em;
   vertical-align: middle;
 }
+
 .rating-number {
   margin-left: 8px;
   font-weight: 500;
   color: #ff9800;
 }
+
 .review-count {
   margin-left: 6px;
   color: #888;
   font-size: 0.98em;
 }
 
+.cart-qty-number {
+  min-width: 28px;
+  display: inline-block;
+  text-align: center;
+  font-size: 1.1em;
+  font-weight: 500;
+}
+
+.book-details-card .mat-mini-fab {
+  width: 30px;
+  height: 30px;
+  min-width: 30px;
+  min-height: 30px;
+  font-size: 1.1em;
+}
+
+.book-details-card .mat-mini-fab .mat-icon {
+  font-size: 12.6px;
+}
+
+.book-details-card .mat-mdc-mini-fab {
+  width: 30px;
+  height: 30px;
+  min-width: 30px;
+  min-height: 30px;
+}

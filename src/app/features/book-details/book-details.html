@@ -37,7 +37,15 @@
       </mat-expansion-panel>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button color="primary" (click)="addToCart(book)">Add to Cart</button>
+      <ng-container *ngIf="getBookQuantity() > 0; else addToCartBtn">
+        <button mat-mini-fab color="warn" (click)="decrementBook()" aria-label="Decrease quantity"><mat-icon>remove</mat-icon></button>
+        <span class="cart-qty-number">{{ getBookQuantity() }}</span>
+        <button mat-mini-fab color="warn" (click)="incrementBook()" aria-label="Increase quantity"><mat-icon>add</mat-icon></button>
+        <button mat-mini-fab color="warn" *ngIf="getBookQuantity() > 0" (click)="removeBook()" aria-label="Remove from cart"><mat-icon>delete</mat-icon></button>
+      </ng-container>
+      <ng-template #addToCartBtn>
+        <button mat-raised-button color="primary" (click)="addToCart(book)">Add to Cart</button>
+      </ng-template>
       <button mat-stroked-button color="accent" routerLink="/">Back to List</button>
     </mat-card-actions>
   </mat-card>
