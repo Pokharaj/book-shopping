@@ -57,3 +57,22 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+## Deployment to GitHub Pages
+
+To deploy this Angular app to GitHub Pages:
+
+1. Install the deploy tool (if not already):
+   ```bash
+   npm install -g angular-cli-ghpages
+   ```
+2. Build the project with the correct base href:
+   ```bash
+   ng build --base-href "/book-store/"
+   ```
+3. Deploy to GitHub Pages:
+   ```bash
+   npx angular-cli-ghpages --dir=dist/book-store
+   ```
+
+Your app will be available at: `https://<your-github-username>.github.io/book-store/`
