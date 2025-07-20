@@ -25,4 +25,23 @@ export class App implements OnInit {
       this.cartCount = count;
     });
   }
+
+  onLogoLoad(event: any) {
+    // Add loaded class for smooth animation
+    const img = event.target;
+    img.classList.add('loaded');
+  }
+
+  onLogoError(event: any) {
+    // Hide the logo and show fallback icon
+    const img = event.target;
+    const fallback = img.nextElementSibling;
+    if (img && fallback) {
+      img.style.display = 'none';
+      fallback.style.display = 'flex';
+    }
+    
+    // Log the error for debugging
+    console.warn('Logo failed to load:', img.src);
+  }
 }

@@ -2,3 +2,227 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* Mobile-first responsive design */
+* {
+  box-sizing: border-box;
+}
+
+/* Responsive typography */
+html {
+  font-size: 16px;
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 13px;
+  }
+}
+
+/* Mobile-friendly spacing and layout */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 8px;
+  }
+}
+
+/* Mobile-friendly buttons */
+.mat-mdc-button,
+.mat-mdc-raised-button,
+.mat-mdc-stroked-button {
+  min-height: 44px; /* Touch-friendly minimum height */
+  min-width: 44px; /* Touch-friendly minimum width */
+}
+
+@media (max-width: 768px) {
+  .mat-mdc-button,
+  .mat-mdc-raised-button,
+  .mat-mdc-stroked-button {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+  }
+}
+
+/* Mobile-friendly form elements */
+.mat-mdc-form-field {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .mat-mdc-form-field {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+}
+
+/* Mobile-friendly cards */
+.mat-mdc-card {
+  margin-bottom: 16px;
+}
+
+@media (max-width: 768px) {
+  .mat-mdc-card {
+    margin-bottom: 12px;
+  }
+}
+
+/* Mobile-friendly lists */
+.mat-mdc-list-item {
+  min-height: 60px;
+}
+
+@media (max-width: 768px) {
+  .mat-mdc-list-item {
+    min-height: 56px;
+  }
+}
+
+/* Mobile-friendly icons */
+.mat-icon {
+  vertical-align: middle;
+}
+
+@media (max-width: 768px) {
+  .mat-icon {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* Mobile-friendly toolbar */
+.mat-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+@media (max-width: 768px) {
+  .mat-toolbar {
+    padding: 0 8px;
+  }
+}
+
+/* Mobile-friendly navigation */
+@media (max-width: 768px) {
+  .brand-text {
+    font-size: 1.1rem !important;
+  }
+}
+
+/* Mobile-friendly spacing utilities */
+.mobile-padding {
+  padding: 16px;
+}
+
+@media (max-width: 768px) {
+  .mobile-padding {
+    padding: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mobile-padding {
+    padding: 8px;
+  }
+}
+
+/* Mobile-friendly margins */
+.mobile-margin {
+  margin: 16px;
+}
+
+@media (max-width: 768px) {
+  .mobile-margin {
+    margin: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mobile-margin {
+    margin: 8px;
+  }
+}
+
+/* Mobile-friendly grid system */
+.mobile-grid {
+  display: grid;
+  gap: 16px;
+}
+
+@media (max-width: 768px) {
+  .mobile-grid {
+    gap: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mobile-grid {
+    gap: 8px;
+  }
+}
+
+/* Mobile-friendly flexbox utilities */
+.mobile-flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .mobile-flex {
+    flex-direction: column;
+  }
+}
+
+/* Mobile-friendly text alignment */
+@media (max-width: 768px) {
+  .mobile-text-center {
+    text-align: center;
+  }
+  
+  .mobile-text-left {
+    text-align: left;
+  }
+  
+  .mobile-text-right {
+    text-align: right;
+  }
+}
+
+/* Mobile-friendly visibility */
+@media (max-width: 768px) {
+  .mobile-hide {
+    display: none !important;
+  }
+  
+  .mobile-show {
+    display: block !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .desktop-hide {
+    display: none !important;
+  }
+  
+  .desktop-show {
+    display: block !important;
+  }
+}

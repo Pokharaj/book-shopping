@@ -1,20 +1,40 @@
-<mat-toolbar color="primary">
-  <a routerLink="/" class="brand-link">
-    <span class="brand-logo-flex">
-      <span class="brand-text">Book Store</span>
-    </span>
-  </a>
-  <span class="spacer"></span>
-  <a routerLink="/cart" [matBadge]="cartCount > 0 ? cartCount : null" matBadgeColor="accent" matBadgeOverlap="false"  style="color: inherit; text-decoration: none; font-size: 1.25rem; font-weight: 500; margin-right: 8px;">
-    <mat-icon>shopping_cart</mat-icon>
-  </a>
+<mat-toolbar color="primary" class="mobile-toolbar">
+  <div class="container">
+    <a routerLink="/" class="brand-link" aria-label="Book Store Home">
+      <span class="brand-logo-flex">
+        <img src="assets/book_store_logo.png" 
+             alt="Book Store Logo" 
+             class="brand-logo"
+             (load)="onLogoLoad($event)"
+             (error)="onLogoError($event)"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="brand-logo-fallback" style="display: none;">
+          <mat-icon class="fallback-icon">book</mat-icon>
+        </div>
+        <span class="brand-text">Book Store</span>
+      </span>
+    </a>
+    <span class="spacer"></span>
+    <a routerLink="/cart" 
+       [matBadge]="cartCount > 0 ? cartCount : null" 
+       matBadgeColor="accent" 
+       matBadgeOverlap="false"  
+       class="cart-link"
+       aria-label="Shopping Cart">
+      <mat-icon>shopping_cart</mat-icon>
+    </a>
+  </div>
 </mat-toolbar>
-<router-outlet></router-outlet>
+
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
 
 <style>
   .spacer {
     flex: 1 1 auto;
   }
+  
   .brand-link {
     display: flex;
     align-items: center;
@@ -22,20 +42,197 @@
     text-decoration: none;
     font-size: 1.25rem;
     font-weight: 500;
+    transition: opacity 0.2s ease;
   }
+  
+  .brand-link:hover {
+    opacity: 0.9;
+  }
+  
   .brand-logo-flex {
     display: flex;
     align-items: center;
+    gap: 12px;
   }
-  .brand-logo-flex .mat-icon {
-    font-size: 2rem;
-    margin-right: 8px;
-    vertical-align: middle;
-    line-height: 1;
+  
+  .brand-logo {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+    filter: brightness(0) invert(1); /* Makes the logo white for the toolbar */
+    transition: transform 0.2s ease, opacity 0.3s ease;
+    opacity: 0;
   }
+  
+  .brand-logo.loaded {
+    opacity: 1;
+  }
+  
+  .brand-logo:hover {
+    transform: scale(1.05);
+  }
+  
+  .brand-logo-fallback {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    animation: fadeIn 0.3s ease;
+  }
+  
+  .fallback-icon {
+    font-size: 24px;
+    color: white;
+  }
+  
   .brand-text {
     display: flex;
     align-items: center;
     height: 2rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  
+  .cart-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: inherit;
+    text-decoration: none;
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-right: 8px;
+    min-width: 44px;
+    min-height: 44px;
+    border-radius: 50%;
+    transition: background-color 0.2s ease;
+  }
+  
+  .cart-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .mobile-toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .mobile-toolbar .container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 16px;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .mobile-toolbar .container {
+      padding: 0 12px;
+    }
+    
+    .brand-logo {
+      height: 32px;
+    }
+    
+    .brand-logo-fallback {
+      height: 32px;
+      width: 32px;
+    }
+    
+    .fallback-icon {
+      font-size: 20px;
+    }
+    
+    .brand-text {
+      font-size: 1.1rem;
+    }
+    
+    .cart-link {
+      font-size: 1.1rem;
+      margin-right: 4px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .mobile-toolbar .container {
+      padding: 0 8px;
+    }
+    
+    .brand-logo {
+      height: 28px;
+    }
+    
+    .brand-logo-fallback {
+      height: 28px;
+      width: 28px;
+    }
+    
+    .fallback-icon {
+      font-size: 18px;
+    }
+    
+    .brand-text {
+      font-size: 1rem;
+    }
+    
+    .cart-link {
+      font-size: 1rem;
+      margin-right: 2px;
+    }
+  }
+  
+  @media (max-width: 360px) {
+    .brand-logo-flex {
+      gap: 8px;
+    }
+    
+    .brand-logo {
+      height: 24px;
+    }
+    
+    .brand-logo-fallback {
+      height: 24px;
+      width: 24px;
+    }
+    
+    .fallback-icon {
+      font-size: 16px;
+    }
+    
+    .brand-text {
+      font-size: 0.9rem;
+    }
+  }
+  
+  /* High DPI displays */
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .brand-logo {
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: crisp-edges;
+    }
+  }
+  
+  /* Dark mode support */
+  @media (prefers-color-scheme: dark) {
+    .brand-logo {
+      filter: brightness(0) invert(1);
+    }
   }
 </style>

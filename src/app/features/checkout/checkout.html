@@ -1,38 +1,74 @@
 <mat-card class="checkout-container">
   <mat-card-title class="checkout-title">
-    <mat-icon color="primary" style="vertical-align: middle; margin-right: 8px;">shopping_cart_checkout</mat-icon>
-    Checkout
+    <mat-icon color="primary" class="checkout-icon">shopping_cart_checkout</mat-icon>
+    <span>Checkout</span>
   </mat-card-title>
-  <mat-divider></mat-divider>
-  <mat-card-content>
+  
+  <mat-divider class="checkout-divider"></mat-divider>
+  
+  <mat-card-content class="checkout-content">
     <div *ngIf="cartItems.length > 0; else emptyCart">
-      <mat-list>
-        <mat-list-item *ngFor="let item of cartItems">
-          <div class="checkout-item-row">
-            <div class="checkout-item-title">{{ item.title }}</div>
-            <div class="checkout-item-qty">x{{ item.quantity }}</div>
-            <div class="checkout-item-price">&#64; ${{ item.price?.amount || 0 | number:'1.2-2' }}</div>
-            <div class="checkout-item-total">= ${{ ((item.price?.amount || 0) * item.quantity) | number:'1.2-2' }}</div>
-          </div>
-        </mat-list-item>
-      </mat-list>
+      <div class="order-summary">
+        <h3 class="summary-title">
+          <mat-icon>receipt</mat-icon>
+          <span>Order Summary</span>
+        </h3>
+        
+        <mat-list class="checkout-list">
+          <mat-list-item *ngFor="let item of cartItems" class="checkout-item">
+            <div class="checkout-item-content">
+              <div class="item-info">
+                <mat-icon class="item-icon" color="primary">menu_book</mat-icon>
+                <div class="item-details">
+                  <div class="checkout-item-title">{{ item.title }}</div>
+                  <div class="item-meta">
+                    <span class="item-qty">Quantity: {{ item.quantity }}</span>
+                                         <span class="item-price">&#64; ${{ item.price?.amount || 0 | number:'1.2-2' }}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="item-total">
+                <span class="total-amount">${{ ((item.price?.amount || 0) * item.quantity) | number:'1.2-2' }}</span>
+              </div>
+            </div>
+          </mat-list-item>
+        </mat-list>
+      </div>
+      
       <div class="checkout-summary">
         <div class="summary-row">
-          <span>Total Items:</span>
-          <span><strong>{{ getTotalItems() }}</strong></span>
+          <span class="summary-label">Total Items:</span>
+          <span class="summary-value"><strong>{{ getTotalItems() }}</strong></span>
         </div>
-        <div class="summary-row">
-          <span>Total Price:</span>
+        <div class="summary-row total-row">
+          <span class="summary-label">Total Price:</span>
           <span class="summary-total-price"><strong>${{ getTotalPrice() | number:'1.2-2' }}</strong></span>
         </div>
       </div>
+      
       <div class="checkout-actions">
-        <button mat-stroked-button color="accent" routerLink="/cart">Back to Cart</button>
-        <button mat-raised-button color="primary" (click)="placeOrder()">Place Order</button>
+        <button mat-stroked-button color="accent" routerLink="/cart" class="action-btn">
+          <mat-icon>arrow_back</mat-icon>
+          <span>Back to Cart</span>
+        </button>
+        <button mat-raised-button color="primary" (click)="placeOrder()" class="action-btn place-order-btn">
+          <mat-icon>check_circle</mat-icon>
+          <span>Place Order</span>
+        </button>
       </div>
     </div>
+    
     <ng-template #emptyCart>
-      <div class="empty-cart-msg">Your cart is empty.</div>
+      <div class="empty-cart">
+        <mat-icon class="empty-cart-icon" color="disabled">shopping_cart_outlined</mat-icon>
+        <div class="empty-cart-msg">Your cart is empty.</div>
+        <div class="empty-cart-actions">
+          <button mat-raised-button color="accent" routerLink="/" class="browse-btn">
+            <mat-icon>store</mat-icon>
+            <span>Browse Books</span>
+          </button>
+        </div>
+      </div>
     </ng-template>
   </mat-card-content>
 </mat-card>

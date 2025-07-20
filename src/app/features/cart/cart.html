@@ -1,36 +1,77 @@
 <mat-card class="cart-container">
   <mat-card-title class="cart-title">
-    <mat-icon color="primary" style="vertical-align: middle; margin-right: 8px;">shopping_cart</mat-icon>
-    Shopping Cart
+    <mat-icon color="primary" class="cart-icon">shopping_cart</mat-icon>
+    <span>Shopping Cart</span>
+    <span class="cart-count-badge" *ngIf="cartItems.length > 0">({{ getTotalItems() }} items)</span>
   </mat-card-title>
-  <mat-divider></mat-divider>
-  <mat-list *ngIf="cartItems.length > 0; else emptyCart">
-    <mat-list-item *ngFor="let item of cartItems; let last = last">
-      <div class="cart-item-content">
-        <mat-icon class="cart-book-icon" color="primary">menu_book</mat-icon>
-        <div class="cart-item-title">{{ item.title }}</div>
-        <div class="cart-item-qty">
-          <button mat-mini-fab color="warn" (click)="decrementQuantity(item)" aria-label="Decrease quantity"><mat-icon>remove</mat-icon></button>
-          <span class="cart-qty-number">{{ item.quantity }}</span>
-          <button mat-mini-fab color="warn" (click)="incrementQuantity(item)" aria-label="Increase quantity"><mat-icon>add</mat-icon></button>
+  
+  <mat-divider class="cart-divider"></mat-divider>
+  
+  <div class="cart-content">
+    <mat-list *ngIf="cartItems.length > 0; else emptyCart" class="cart-list">
+      <mat-list-item *ngFor="let item of cartItems; let last = last; let i = index" class="cart-item">
+        <div class="cart-item-content">
+          <div class="item-info">
+            <mat-icon class="cart-book-icon" color="primary">menu_book</mat-icon>
+            <div class="item-details">
+              <div class="cart-item-title">{{ item.title || 'Unknown Book' }}</div>
+              <div class="item-price">${{ item.price?.amount || 0 | number:'1.2-2' }} each</div>
+              <div class="item-isbn">ISBN: {{ item.ISBN || 'N/A' }}</div>
+            </div>
+          </div>
+          
+          <div class="item-controls">
+            <div class="cart-item-qty">
+              <button mat-mini-fab color="warn" (click)="decrementQuantity(item)" aria-label="Decrease quantity" class="qty-btn">
+                <mat-icon>remove</mat-icon>
+              </button>
+              <span class="cart-qty-number">{{ item.quantity || 0 }}</span>
+              <button mat-mini-fab color="warn" (click)="incrementQuantity(item)" aria-label="Increase quantity" class="qty-btn">
+                <mat-icon>add</mat-icon>
+              </button>
+            </div>
+            <button mat-stroked-button color="warn" (click)="removeFromCart(item)" class="remove-btn">
+              <mat-icon>delete</mat-icon>
+              <span class="btn-text">Remove</span>
+            </button>
+          </div>
         </div>
-        <button mat-stroked-button color="warn" (click)="removeFromCart(item)">Remove</button>
+        <mat-divider *ngIf="!last" class="item-divider"></mat-divider>
+      </mat-list-item>
+    </mat-list>
+    
+    <ng-template #emptyCart>
+      <div class="empty-cart">
+        <mat-icon class="empty-cart-icon" color="disabled">shopping_cart_outlined</mat-icon>
+        <div class="empty-cart-msg">Your cart is empty.</div>
+        <div class="cart-empty-actions">
+          <button mat-raised-button color="accent" routerLink="/" class="browse-btn">
+            <mat-icon>store</mat-icon>
+            <span>Browse Books</span>
+          </button>
+        </div>
       </div>
-      <mat-divider *ngIf="!last"></mat-divider>
-    </mat-list-item>
-  </mat-list>
-  <ng-template #emptyCart>
-    <div class="empty-cart-msg">Your cart is empty.</div>
-    <div class="cart-empty-actions">
-      <button mat-stroked-button color="accent" routerLink="/">Home</button>
-    </div>
-  </ng-template>
-  <div class="cart-summary" *ngIf="cartItems.length > 0">
-    <mat-icon color="accent">shopping_cart</mat-icon>
-    <span>Total Items: <strong>{{ getTotalItems() }}</strong></span>
+    </ng-template>
   </div>
+  
+  <div class="cart-summary" *ngIf="cartItems.length > 0">
+    <div class="summary-content">
+      <mat-icon color="accent" class="summary-icon">shopping_cart</mat-icon>
+      <div class="summary-text">
+        <span class="summary-label">Total Items:</span>
+        <span class="summary-value"><strong>{{ getTotalItems() }}</strong></span>
+      </div>
+    </div>
+  </div>
+  
   <div class="cart-actions" *ngIf="cartItems.length > 0">
-    <button mat-stroked-button color="accent" routerLink="/">Home</button>
-    <button mat-raised-button color="primary" routerLink="/checkout">Proceed to Checkout</button>
+    <button mat-stroked-button color="accent" routerLink="/" class="action-btn">
+      <mat-icon>arrow_back</mat-icon>
+      <span>Continue Shopping</span>
+    </button>
+    <button mat-raised-button color="primary" routerLink="/checkout" class="action-btn checkout-btn">
+      <mat-icon>shopping_cart_checkout</mat-icon>
+      <span>Proceed to Checkout</span>
+    </button>
   </div>
 </mat-card>

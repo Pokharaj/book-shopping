@@ -1,52 +1,145 @@
 <div class="book-details-container">
   <mat-card *ngIf="book" class="book-details-card">
-    <img mat-card-image src="/generic-book-cover.jpg" alt="Book Cover" />
-    <div class="rating-display">
-      <ng-container *ngFor="let star of [1,2,3,4,5]; let i = index">
-        <mat-icon color="warn">
-          {{ book.ratings.average_rating >= star ? 'star' : (book.ratings.average_rating >= star - 0.5 ? 'star_half' : 'star_border') }}
-        </mat-icon>
-      </ng-container>
-      <span class="rating-number">{{ book.ratings.average_rating }} / 5</span>
-      <span class="review-count">({{ book.ratings.review_count }} reviews)</span>
+    <div class="book-header">
+      <div class="book-image-section">
+        <img mat-card-image src="generic-book-cover.jpg" alt="Book Cover" class="book-cover-image" />
+      </div>
+      
+      <div class="book-info-section">
+        <mat-card-title class="book-title">{{ book.title }}</mat-card-title>
+        
+        <div class="rating-display">
+          <ng-container *ngFor="let star of [1,2,3,4,5]; let i = index">
+            <mat-icon color="warn" class="star-icon">
+              {{ book.ratings.average_rating >= star ? 'star' : (book.ratings.average_rating >= star - 0.5 ? 'star_half' : 'star_border') }}
+            </mat-icon>
+          </ng-container>
+          <span class="rating-number">{{ book.ratings.average_rating }} / 5</span>
+          <span class="review-count">({{ book.ratings.review_count }} reviews)</span>
+        </div>
+        
+        <div class="price-section">
+          <span class="price-label">Price:</span>
+          <span class="price-amount">{{ book.price.amount }} {{ book.price.currency }}</span>
+        </div>
+        
+        <div class="quick-actions">
+          <ng-container *ngIf="getBookQuantity() > 0; else addToCartBtn">
+            <div class="quantity-controls">
+              <button mat-mini-fab color="warn" (click)="decrementBook()" aria-label="Decrease quantity" class="qty-btn">
+                <mat-icon>remove</mat-icon>
+              </button>
+              <span class="cart-qty-number">{{ getBookQuantity() }}</span>
+              <button mat-mini-fab color="warn" (click)="incrementBook()" aria-label="Increase quantity" class="qty-btn">
+                <mat-icon>add</mat-icon>
+              </button>
+              <button mat-mini-fab color="warn" *ngIf="getBookQuantity() > 0" (click)="removeBook()" aria-label="Remove from cart" class="qty-btn">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </ng-container>
+          <ng-template #addToCartBtn>
+            <button mat-raised-button color="primary" (click)="addToCart(book)" class="add-to-cart-btn">
+              <mat-icon>add_shopping_cart</mat-icon>
+              <span>Add to Cart</span>
+            </button>
+          </ng-template>
+          
+          <!-- Go to Cart Button -->
+          <button mat-stroked-button color="accent" routerLink="/cart" class="goto-cart-btn">
+            <mat-icon>shopping_cart</mat-icon>
+            <span class="btn-text">Go to Cart</span>
+            <span class="cart-count" *ngIf="getTotalCartItems() > 0">({{ getTotalCartItems() }})</span>
+          </button>
+        </div>
+      </div>
     </div>
-    <mat-card-title>{{ book.title }}</mat-card-title>
-    <mat-card-content>
-      <p><strong>Author:</strong> {{ book.author }}</p>
-      <p><strong>Description:</strong> {{ book.description }}</p>
-      <p><strong>Price:</strong> {{ book.price.amount }} {{ book.price.currency }}</p>
-      <p><strong>Genre:</strong> {{ book.genre }}</p>
-      <p><strong>Language:</strong> {{ book.language }}</p>
-      <p><strong>Format:</strong> {{ book.format }}</p>
-      <p><strong>Bestseller:</strong> {{ book.bestseller ? 'Yes' : 'No' }}</p>
-      <p><strong>Availability:</strong> {{ book.availability }}</p>
-      <mat-expansion-panel>
+    
+    <mat-card-content class="book-content">
+      <div class="content-section">
+        <h3 class="section-title">Book Information</h3>
+        <div class="info-grid">
+          <div class="info-item">
+            <span class="info-label">Author:</span>
+            <span class="info-value">{{ book.author }}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Genre:</span>
+            <span class="info-value">{{ book.genre }}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Language:</span>
+            <span class="info-value">{{ book.language }}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Format:</span>
+            <span class="info-value">{{ book.format }}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Bestseller:</span>
+            <span class="info-value">{{ book.bestseller ? 'Yes' : 'No' }}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Availability:</span>
+            <span class="info-value">{{ book.availability }}</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="content-section">
+        <h3 class="section-title">Description</h3>
+        <p class="book-description">{{ book.description }}</p>
+      </div>
+      
+      <mat-expansion-panel class="details-panel">
         <mat-expansion-panel-header>
           <mat-panel-title>
-            More Details
+            <mat-icon>info</mat-icon>
+            <span>More Details</span>
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <p><strong>Publisher:</strong> {{ book.publisher }}</p>
-        <p><strong>Publication Date:</strong> {{ book.publication_date }}</p>
-        <p><strong>Pages:</strong> {{ book.pages }}</p>
-        <p><strong>ISBN:</strong> {{ book.ISBN }}</p>
-        <p><strong>Edition:</strong> {{ book.edition }}</p>
-        <p><strong>Dimensions:</strong> {{ book.dimensions.height }} x {{ book.dimensions.width }} x {{ book.dimensions.thickness }}</p>
-        <p><strong>Weight:</strong> {{ book.weight }}</p>
-        <p><strong>Tags:</strong> {{ book.tags.join(', ') }}</p>
+        <div class="detailed-info">
+          <div class="info-item">
+            <span class="info-label">Publisher:</span>
+            <span class="info-value">{{ book.publisher }}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Publication Date:</span>
+            <span class="info-value">{{ book.publication_date }}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Pages:</span>
+            <span class="info-value">{{ book.pages }}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">ISBN:</span>
+            <span class="info-value">{{ book.ISBN }}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Edition:</span>
+            <span class="info-value">{{ book.edition }}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Dimensions:</span>
+            <span class="info-value">{{ book.dimensions.height }} x {{ book.dimensions.width }} x {{ book.dimensions.thickness }}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Weight:</span>
+            <span class="info-value">{{ book.weight }}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Tags:</span>
+            <span class="info-value">{{ book.tags.join(', ') }}</span>
+          </div>
+        </div>
       </mat-expansion-panel>
     </mat-card-content>
-    <mat-card-actions>
-      <ng-container *ngIf="getBookQuantity() > 0; else addToCartBtn">
-        <button mat-mini-fab color="warn" (click)="decrementBook()" aria-label="Decrease quantity"><mat-icon>remove</mat-icon></button>
-        <span class="cart-qty-number">{{ getBookQuantity() }}</span>
-        <button mat-mini-fab color="warn" (click)="incrementBook()" aria-label="Increase quantity"><mat-icon>add</mat-icon></button>
-        <button mat-mini-fab color="warn" *ngIf="getBookQuantity() > 0" (click)="removeBook()" aria-label="Remove from cart"><mat-icon>delete</mat-icon></button>
-      </ng-container>
-      <ng-template #addToCartBtn>
-        <button mat-raised-button color="primary" (click)="addToCart(book)">Add to Cart</button>
-      </ng-template>
-      <button mat-stroked-button color="accent" routerLink="/">Back to List</button>
+    
+    <mat-card-actions class="book-actions">
+      <button mat-stroked-button color="accent" routerLink="/" class="back-btn">
+        <mat-icon>arrow_back</mat-icon>
+        <span>Back to List</span>
+      </button>
     </mat-card-actions>
   </mat-card>
 </div>

@@ -27,6 +27,19 @@ export class BookList implements OnInit {
     });
   }
 
+  onImageError(event: any) {
+    // Hide the image and show placeholder
+    const img = event.target;
+    const placeholder = img.nextElementSibling;
+    if (img && placeholder) {
+      img.style.display = 'none';
+      placeholder.style.display = 'flex';
+    }
+    
+    // Log the error for debugging
+    console.warn('Image failed to load:', img.src);
+  }
+
   getCart() {
     return this.cartService.getCart();
   }
@@ -87,5 +100,10 @@ export class BookList implements OnInit {
       this.setCart(cart);
       this.snackBar.open(`${book.title} removed from cart!`, 'Close', { duration: 1500 });
     }
+  }
+
+  getTotalCartItems(): number {
+    const cart = this.getCart();
+    return cart.reduce((acc: number, item: any) => acc + (item.quantity || 0), 0);
   }
 }
