@@ -229,7 +229,7 @@
 }
 
 .details-panel .mat-expansion-panel-header {
-  // background: #f8f9fa;
+  background: #333;
   padding: 16px 20px;
 }
 
@@ -239,6 +239,11 @@
   gap: 8px;
   font-weight: 600;
   color: #333;
+}
+
+.mat-expansion-panel-content {
+  background: #fff;
+  color: #181a1b;
 }
 
 .detailed-info {
@@ -598,5 +603,10 @@
     background: #666;
     color: #fff;
     border-color: #777;
+  }
+
+  .mat-expansion-panel-content {
+    background: #555;
+    color: #f1f1f1;
   }
 }
