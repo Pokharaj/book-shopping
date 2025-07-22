@@ -7,7 +7,13 @@
     <p>Thank you for your purchase. Your order has been placed and is being processed.</p>
   </mat-card-content>
   <div class="order-success-actions">
-    <button mat-raised-button color="primary" routerLink="/">Back to Home</button>
-    <button mat-raised-button color="accent" routerLink="/cart">View Cart</button>
+    <button mat-raised-button color="primary" routerLink="/">
+      <mat-icon>store</mat-icon>
+      <span>Browse Books</span>
+    </button>
+    <button mat-raised-button color="accent" routerLink="/cart">
+      <mat-icon>shopping_cart</mat-icon>
+      <span>View Cart</span>
+    </button>
   </div>
 </mat-card> 

@@ -60,7 +60,7 @@
 
 .checkout-item {
   padding: 16px 0;
-  min-height: 130px;
+  min-height: 100px;
   border-bottom: 1px solid #f0f0f0;
 }
 
@@ -105,7 +105,7 @@
 
 .item-meta {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 2px;
 }
 
