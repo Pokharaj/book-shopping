@@ -44,13 +44,6 @@
               <span>Add to Cart</span>
             </button>
           </ng-template>
-          
-          <!-- Go to Cart Button -->
-          <button mat-stroked-button color="accent" routerLink="/cart" class="goto-cart-btn">
-            <mat-icon>shopping_cart</mat-icon>
-            <span class="btn-text">Go to Cart</span>
-            <span class="cart-count" *ngIf="getTotalCartItems() > 0">({{ getTotalCartItems() }})</span>
-          </button>
         </div>
       </div>
     </div>
@@ -136,7 +129,7 @@
     </mat-card-content>
     
     <mat-card-actions class="book-actions">
-      <button mat-stroked-button color="accent" routerLink="/" class="back-btn">
+      <button mat-button color="accent" routerLink="/" class="back-btn">
         <mat-icon>arrow_back</mat-icon>
         <span>Back to List</span>
       </button>

@@ -98,9 +98,4 @@ export class BookDetails implements OnInit {
       this.snackBar.open(`${this.book.title} removed from cart!`, 'Close', { duration: 1500 });
     }
   }
-
-  getTotalCartItems(): number {
-    const cart = this.getCart();
-    return cart.reduce((acc: number, item: any) => acc + (item.quantity || 0), 0);
-  }
 }

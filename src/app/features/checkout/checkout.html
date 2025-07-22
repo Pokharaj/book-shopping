@@ -3,9 +3,9 @@
     <mat-icon color="primary" class="checkout-icon">shopping_cart_checkout</mat-icon>
     <span>Checkout</span>
   </mat-card-title>
-  
+
   <mat-divider class="checkout-divider"></mat-divider>
-  
+
   <mat-card-content class="checkout-content">
     <div *ngIf="cartItems.length > 0; else emptyCart">
       <div class="order-summary">
@@ -13,7 +13,7 @@
           <mat-icon>receipt</mat-icon>
           <span>Order Summary</span>
         </h3>
-        
+
         <mat-list class="checkout-list">
           <mat-list-item *ngFor="let item of cartItems" class="checkout-item">
             <div class="checkout-item-content">
@@ -23,18 +23,18 @@
                   <div class="checkout-item-title">{{ item.title }}</div>
                   <div class="item-meta">
                     <span class="item-qty">Quantity: {{ item.quantity }}</span>
-                                         <span class="item-price">&#64; ${{ item.price?.amount || 0 | number:'1.2-2' }}</span>
+                    <span class="item-price">&#64; ${{ item.price?.amount || 0 | number:'1.2-2' }}</span>
+                  </div>
+                  <div class="item-total">
+                    <span class="total-amount">${{ ((item.price?.amount || 0) * item.quantity) | number:'1.2-2' }}</span>
                   </div>
                 </div>
-              </div>
-              <div class="item-total">
-                <span class="total-amount">${{ ((item.price?.amount || 0) * item.quantity) | number:'1.2-2' }}</span>
               </div>
             </div>
           </mat-list-item>
         </mat-list>
       </div>
-      
+
       <div class="checkout-summary">
         <div class="summary-row">
           <span class="summary-label">Total Items:</span>
@@ -45,9 +45,9 @@
           <span class="summary-total-price"><strong>${{ getTotalPrice() | number:'1.2-2' }}</strong></span>
         </div>
       </div>
-      
+
       <div class="checkout-actions">
-        <button mat-stroked-button color="accent" routerLink="/cart" class="action-btn">
+        <button mat-button color="accent" routerLink="/cart" class="action-btn">
           <mat-icon>arrow_back</mat-icon>
           <span>Back to Cart</span>
         </button>
@@ -57,7 +57,7 @@
         </button>
       </div>
     </div>
-    
+
     <ng-template #emptyCart>
       <div class="empty-cart">
         <mat-icon class="empty-cart-icon" color="disabled">shopping_cart_outlined</mat-icon>

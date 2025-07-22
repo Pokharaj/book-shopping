@@ -13,11 +13,13 @@
   align-items: center;
   gap: 12px;
   padding: 24px 24px 16px 24px;
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #333;
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: #181a1b;
   background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
   flex-wrap: wrap;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  letter-spacing: 0.5px;
 }
 
 .cart-icon {
@@ -57,7 +59,7 @@
 
 .cart-item {
   padding: 20px 24px;
-  min-height: auto;
+  min-height: 150px;
   border-bottom: 1px solid #f0f0f0;
 }
 
@@ -92,19 +94,21 @@
 }
 
 .cart-item-title {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #333;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #181a1b;
   margin-bottom: 4px;
   line-height: 1.3;
   word-wrap: break-word;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.07);
 }
 
 .item-price {
-  font-size: 0.9rem;
-  color: #666;
-  font-weight: 500;
+  font-size: 1.05rem;
+  color: #007bff;
+  font-weight: 600;
   margin-bottom: 2px;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.05);
 }
 
 .item-isbn {
@@ -251,11 +255,6 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-}
-
-.checkout-btn {
-  background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
-  color: white;
 }
 
 /* Responsive breakpoints */
@@ -575,17 +574,19 @@
   }
   
   .cart-title {
-    background: linear-gradient(135deg, #424242 0%, #303030 100%);
-    color: #fff;
+    background: linear-gradient(135deg, #23272b 0%, #181a1b 100%);
+    color: #f1f1f1;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.25);
   }
   
   .cart-item-title {
-    color: #fff;
+    color: #f1f1f1;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.25);
   }
   
-  .item-price,
-  .item-isbn {
-    color: #ccc;
+  .item-price {
+    color: #4fc3f7;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.18);
   }
   
   .cart-qty-number {

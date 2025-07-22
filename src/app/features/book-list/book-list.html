@@ -1,13 +1,4 @@
 <div class="book-list-container">
-  <!-- Go to Cart Button -->
-  <div class="cart-navigation">
-    <button mat-raised-button color="accent" routerLink="/cart" class="goto-cart-btn">
-      <mat-icon>shopping_cart</mat-icon>
-      <span class="btn-text">Go to Cart</span>
-      <span class="cart-count" *ngIf="getTotalCartItems() > 0">({{ getTotalCartItems() }})</span>
-    </button>
-  </div>
-
   <mat-card *ngFor="let book of books" class="book-card">
     <div class="book-card-header">
       <mat-card-title class="book-title">{{ book.title }}</mat-card-title>
@@ -55,11 +46,11 @@
       
       <ng-container *ngIf="getBookQuantity(book) > 0; else addToCartBtn">
         <div class="quantity-controls">
-          <button mat-mini-fab color="primary" (click)="decrementBook(book)" aria-label="Decrease quantity" class="qty-btn">
+          <button mat-mini-fab color="warn" (click)="decrementBook(book)" aria-label="Decrease quantity" class="qty-btn">
             <mat-icon>remove</mat-icon>
           </button>
           <span class="cart-qty-number">{{ getBookQuantity(book) }}</span>
-          <button mat-mini-fab color="primary" (click)="incrementBook(book)" aria-label="Increase quantity" class="qty-btn">
+          <button mat-mini-fab color="warn" (click)="incrementBook(book)" aria-label="Increase quantity" class="qty-btn">
             <mat-icon>add</mat-icon>
           </button>
           <button *ngIf="getBookQuantity(book) > 0" mat-mini-fab color="warn" (click)="removeBook(book)" aria-label="Remove from cart" class="qty-btn">

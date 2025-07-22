@@ -6,7 +6,6 @@
   </mat-card-title>
   
   <mat-divider class="cart-divider"></mat-divider>
-  
   <div class="cart-content">
     <mat-list *ngIf="cartItems.length > 0; else emptyCart" class="cart-list">
       <mat-list-item *ngFor="let item of cartItems; let last = last; let i = index" class="cart-item">
@@ -29,11 +28,11 @@
               <button mat-mini-fab color="warn" (click)="incrementQuantity(item)" aria-label="Increase quantity" class="qty-btn">
                 <mat-icon>add</mat-icon>
               </button>
+              <button mat-stroked-button color="warn" (click)="removeFromCart(item)" class="remove-btn">
+                <mat-icon>delete</mat-icon>
+                <span class="btn-text">Remove</span>
+              </button>
             </div>
-            <button mat-stroked-button color="warn" (click)="removeFromCart(item)" class="remove-btn">
-              <mat-icon>delete</mat-icon>
-              <span class="btn-text">Remove</span>
-            </button>
           </div>
         </div>
         <mat-divider *ngIf="!last" class="item-divider"></mat-divider>
@@ -65,7 +64,7 @@
   </div>
   
   <div class="cart-actions" *ngIf="cartItems.length > 0">
-    <button mat-stroked-button color="accent" routerLink="/" class="action-btn">
+    <button mat-button color="accent" routerLink="/" class="action-btn">
       <mat-icon>arrow_back</mat-icon>
       <span>Continue Shopping</span>
     </button>
