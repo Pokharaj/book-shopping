@@ -28,7 +28,7 @@ export class BookDetails implements OnInit {
 
   ngOnInit() {
     const ISBN = this.route.snapshot.paramMap.get('ISBN');
-    this.http.get<any[]>('/book_data.json').subscribe(books => {
+    this.http.get<any[]>('book_data.json').subscribe(books => {
       this.book = books.find(b => b.ISBN === ISBN);
     });
   }

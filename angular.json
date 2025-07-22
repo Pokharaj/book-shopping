@@ -17,6 +17,7 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
+            "outputPath": "docs",
             "browser": "src/main.ts",
             "polyfills": [
               "zone.js"
@@ -38,7 +39,8 @@
               "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
-            "server": "src/main.server.ts"
+            "server": "src/main.server.ts",
+            "baseHref": "/book-store/"
           },
           "configurations": {
             "production": {

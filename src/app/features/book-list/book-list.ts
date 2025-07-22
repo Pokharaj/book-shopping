@@ -22,7 +22,7 @@ export class BookList implements OnInit {
   constructor(private http: HttpClient, private snackBar: MatSnackBar, private cartService: CartService) {}
 
   ngOnInit() {
-    this.http.get<any[]>('/book_data.json').subscribe(data => {
+    this.http.get<any[]>('book_data.json').subscribe(data => {
       this.books = data;
     });
   }
